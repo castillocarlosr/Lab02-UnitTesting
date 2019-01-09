@@ -6,7 +6,7 @@ namespace Lab02_UnitTesting
     {
         public static decimal balance = 5000m;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Code401 ATM");
             Console.WriteLine("\n");
@@ -23,21 +23,64 @@ namespace Lab02_UnitTesting
             {
                 if(inputChoice == "1")
                 {
-                    ViewBalance();
+                    ViewBalance(balance);
+                }
+                else if(inputChoice == "2")
+                {
+                    WithdrawMoney();
+                }
+                else if(inputChoice == "3")
+                {
+                    DepositMoney();
+                }
+                else if(inputChoice == "4")
+                {
+                    ExitATM();
                 }
             }
-            catch (Exception)
+            catch (Exception )
             {
 
                 throw;
             }
         }
 
-        public static decimal ViewBalance()
+        public static decimal ViewBalance(decimal insideBalance)
         {
-            Console.WriteLine(balance);
+            decimal currentBalance = balance;
+            Console.WriteLine($"${balance}");
             Console.ReadLine();
+            
             return balance;
+
+        }
+
+        public static decimal WithdrawMoney()
+        {
+            decimal currentBalance = balance;
+            Console.Write("How much money do you want to WITHDRAW: $");
+            string inputWithdraw = Console.ReadLine();
+            decimal inputWithdrawDecimal = decimal.Parse(inputWithdraw);
+
+            balance = currentBalance - inputWithdrawDecimal;
+            //AppDomain();
+            return balance;
+        }
+
+        public static decimal DepositMoney()
+        {
+            decimal currentBalance = balance;
+            Console.Write("How much money do you want to DEPOSIT: $");
+            string inputDeposit = Console.ReadLine();
+            decimal inputDepositDecimal = decimal.Parse(inputDeposit);
+
+            balance = currentBalance + inputDepositDecimal;
+            return balance;
+        }
+
+        public static bool ExitATM()
+        {
+            return false;
         }
 
     }
